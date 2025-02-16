@@ -1,3 +1,20 @@
+/*
+Project				: SWAGLABS
+Product				:
+Module				: standard_user
+Function			: Product order function
+File				: index.html
+Date Started		: 12/02/2025
+Author				: Gayanee Thennakoon
+Date Modified		:
+Modified by			:
+
+Version				: 1.0.0.
+Remarks				:
+Assignment of Software Quality Assurance Professional Program
+
+*/
+
 package UItest;
 
 import org.openqa.selenium.By;
@@ -5,18 +22,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.net.URL;
-import java.time.Duration;
 
 public class Login {
     //Global variable section
@@ -35,17 +45,18 @@ public class Login {
         //Through the driver object, calling the URL
         driver.get(BaseURL);
     }
-
+//Verify that the browser is accessing the correct page and displaying the correct header.
     @Test(priority = 1)
     public void GetPageTitle() throws InterruptedException{
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         //Verify page Title
         System.out.println("The title of the facebook page is : "+driver.getTitle());
 
     }
+    //Verify that the browser is displaying the correct logo image.
     @Test(priority = 2)
-public void testLogoimage(){
-        // Verify Logo image
+    public void testLogoimage(){
+        //Locate/Identify web elements
     WebElement element = driver.findElement(By.className("login_logo"));
     String bgImage = element.getCssValue("background-image");
     String actualUrl = bgImage.replace("url(\"", "").replace("\")", "").replace("url(", "").replace(")", "");
@@ -54,9 +65,10 @@ public void testLogoimage(){
     // Verify the extracted URL
     Assert.assertEquals(actualUrl, expectedUrl, "Logo image URL is incorrect!");
 }
+//Verify that the browser is displaying the correct body image.
 @Test (priority = 3)
 public void testBodyImage(){
-    //Verify body image
+    //Locate/Identify web elements
     WebElement bodyelement = driver.findElement(By.className("bot_column"));
     String bodyImage = bodyelement.getCssValue("background-image");
     String bactualUrl = bodyImage.replace("url(\"", "").replace("\")", "").replace("url(", "").replace(")", "");
@@ -65,12 +77,13 @@ public void testBodyImage(){
     // Verify the extracted URL
     Assert.assertEquals(bactualUrl, expectedbodyUrl, "Background image URL is incorrect!");
 }
-
+//Verify that the browser is displaying the text boxes with correct placeholder.
 @Test(priority = 4)
 public void testPlaceholderText(){
+    //Locate/Identify web elements
       WebElement Username = driver.findElement(By.id("user-name"));
       WebElement password = driver.findElement(By.id("password"));
-    // Get the placeholder attribute value
+    // Get the placeholder attribute values
     String acuPlaceholder = Username.getAttribute("placeholder");
     String acpsPlaceholder = password.getAttribute("placeholder");
 
@@ -83,9 +96,12 @@ public void testPlaceholderText(){
     Assert.assertEquals(acuPlaceholder, exuPlaceholder, " User name Placeholder text is incorrect!");
     Assert.assertEquals(acpsPlaceholder, expPlaceholder, "Password Placeholder text is incorrect!");
 }
+//Test for null values in the 'User Name' and 'Password' text boxes.
+
 @Test(priority = 5)
     public void testNulltxt() throws InterruptedException{
     Thread.sleep(3000);
+    //Locate/Identify web elements
         WebElement username = driver.findElement(By.id("user-name"));
         WebElement password = driver.findElement(By.id("password"));
         WebElement loginBtn = driver.findElement(By.id("login-button"));
@@ -101,6 +117,7 @@ public void testPlaceholderText(){
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message mismatch!");
 
     }
+    //Test for null values in the 'User Name' text boxes.
     @Test(priority = 6)
     public void TestUsernameError(){
         //Locate/Identify web elements
@@ -119,6 +136,7 @@ public void testPlaceholderText(){
         Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message mismatch!");
 
     }
+    //Test for incorrect values in the 'User Name' and 'Password' text boxes.
     @Test(priority = 7)
 public void testloginError() throws InterruptedException{
         Thread.sleep(3000);
@@ -142,6 +160,7 @@ public void testloginError() throws InterruptedException{
     Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message mismatch!");
 
 }
+    //Test for incorrect value in the 'User Name' and  correct value in 'Password' text boxes.
 @Test(priority = 8)
 public void testUserError() throws InterruptedException{
     Thread.sleep(3000);
@@ -168,7 +187,7 @@ public void testUserError() throws InterruptedException{
     Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message mismatch!");
 
 }
-
+    //Test for correct value in the 'User Name' and incorrect value in the 'Password' text boxes.
 @Test(priority = 9)
 public void testPasswordError()throws InterruptedException{
     Thread.sleep(3000);
@@ -185,7 +204,7 @@ public void testPasswordError()throws InterruptedException{
     password.sendKeys(Keys.BACK_SPACE);
     Thread.sleep(1000);
     username_txt = "standard_user";
-    password_txt = "abcvbn";
+    password_txt = "abc";
     username.sendKeys(username_txt);
     password.sendKeys(password_txt);
     loginBtn.click();
@@ -195,6 +214,7 @@ public void testPasswordError()throws InterruptedException{
     Assert.assertEquals(actualErrorMessage, expectedErrorMessage, "Error message mismatch!");
 
 }
+    //Test for correct value in the 'User Name' and 'Password' text boxes.
     @Test(priority = 10)
     public void Loginhappy() throws InterruptedException{
 

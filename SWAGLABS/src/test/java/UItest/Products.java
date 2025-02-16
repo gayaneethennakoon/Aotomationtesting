@@ -1,10 +1,25 @@
+/*
+Project				: SWAGLABS
+Product				:
+Module				: standard_user
+Function			: Product order function
+File				: inventory.html
+Date Started		: 12/02/2025
+Author				: Gayanee Thennakoon
+Date Modified		:
+Modified by			:
+
+Version				: 1.0.0.
+Remarks				:
+Assignment of Software Quality Assurance Professional Program
+
+*/
 package UItest;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -26,7 +41,7 @@ public class Products {
         driver.manage().window().maximize();
         driver.get(BaseURL);
     }
-    // Verify page Title
+    //Verify that the browser is accessing the correct page and displaying the correct Title.
     @Test(priority = 1)
     public void GetPageTitle() throws InterruptedException{
         Thread.sleep(3000);
@@ -34,7 +49,7 @@ public class Products {
         System.out.println("The title of the Swag Labs page is : "+driver.getTitle());
 
     }
-    // Verify page sub title
+    //Verify that the browser is accessing the correct page and displaying the correct subtitle.
     @Test(priority = 2)
     public void testClassText(){
     WebElement product =driver.findElement(By.className("product_label"));
@@ -47,7 +62,7 @@ public class Products {
         Assert.assertEquals(actualText, "Products", "Text inside the element is incorrect!");
 
     }
-    //Check logo image is correct
+    //Verify that the browser is displaying the correct logo image.
     @Test(priority = 2)
     public void testLogoimage(){
         // Verify Logo image
@@ -62,7 +77,7 @@ public class Products {
 
 
     }
-    //Check shopping cart available
+    //Verify that the browser is displaying shopping cart.
     @Test(priority = 3)
     public void testShoppingcart(){
         WebElement shoppingcart = driver.findElement(By.id("shopping_cart_container"));
@@ -70,13 +85,13 @@ public class Products {
         Assert.assertTrue(shoppingcart.isDisplayed(), "Cart icon is not visible!");
         Assert.assertTrue(shoppingcart.isEnabled(),"Cart icon is not clickable!");
     }
-    // add one item
+    // adding a item to shopping cart
     @Test(priority = 4)
     public void testaddtocart(){
         WebElement additem = driver.findElement(By.xpath("//*[@id='inventory_container']/div/div[1]/div[3]/button"));
         additem.click();
     }
-    //Check menu is available
+    //Verify that the menu is available
     @Test(priority = 5)
     public void testMenuvisibility(){
         WebElement sideMenu = driver.findElement(By.className("bm-burger-button"));
@@ -84,7 +99,7 @@ public class Products {
         Assert.assertTrue(sideMenu.isDisplayed(),"Menu icon is not visible");
         Assert.assertTrue(sideMenu.isEnabled(),"Menu icon is not clickable");
     }
-//check sorting option is available
+//verify sorting option is available
     @Test(priority = 6)
     public void testSortcontainer() {
 
@@ -92,7 +107,7 @@ public class Products {
 
         Assert.assertTrue(Sortcontainer.isDisplayed(),"Sort container is not visible");
     }
-    //Check inventory items are display properly
+    //Verify inventory items are display properly
 @Test(priority = 7)
 public void testInventryitem(){
         List<WebElement> intItems = driver.findElements(By.className("inventory_list"));
@@ -104,7 +119,7 @@ public void testInventryitem(){
 
     }
 }
-    //Check inventory name and details are display properly
+    //Verify that the inventory name and details are displayed properly
 @Test(priority = 8)
     public void testItemname(){
         List<WebElement> intItems = driver.findElements(By.className("inventory_item"));
@@ -153,6 +168,7 @@ public void testInventryitem(){
             Assert.assertTrue( itprice.matches(pricePattern),"Price format is incorrect!");
         }
     }
+    //Verify Cart count
 @Test(priority = 11)
     public void testCartcount(){
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -162,6 +178,7 @@ public void testInventryitem(){
     System.out.println("Cart count: " + cartText);
     Assert.assertFalse(cartText.isEmpty(), "Cart count is missing!");
     }
+    //Validate that the shopping cart displays the correct number of selected items.
 @Test(priority = 12)
     public void testNoofitem(){
         List<WebElement> Removeitem =driver.findElements(By.className("btn_secondary"));
@@ -171,6 +188,7 @@ public void testInventryitem(){
         System.out.println("Remove button size : "+removesize+ "Shopping Cart count : "+ shoppingcart.getText());
         Assert.assertEquals(removesize,cartno,"Shopping cart number does not match with selected items");
     }
+    //Check that all links are working properly.
     @Test(priority = 13)
     public void testnavigtation() throws InterruptedException {
         // Verify navigation links
@@ -189,6 +207,7 @@ public void testInventryitem(){
             driver.navigate().back();
         }
     }
+    // Validate that the correct cart number is displayed on the next page.
     @Test(priority = 14)
     public void testCartnonextpage() throws InterruptedException{
        WebElement shoppingcart =driver.findElement(By.id("shopping_cart_container"));
@@ -216,6 +235,7 @@ public void testInventryitem(){
         }
 
     }
+    //Validate that the correct cart number is displayed on the next page.
     @Test(priority = 15)
     public void testshoppingcart() throws InterruptedException{
         WebElement maincart =driver.findElement(By.id("shopping_cart_container"));
@@ -231,7 +251,7 @@ public void testInventryitem(){
         Assert.assertEquals(subcartno, maincartno, "Cart amount is incorrect!");
         driver.navigate().back();
     }
-    // test menu items are available
+    // Verify that the menu items are available.
     @Test(priority = 16)
     public void testsidemenu() throws InterruptedException{
         WebElement menuitem = driver.findElement(By.className("bm-burger-button"));
@@ -258,7 +278,7 @@ public void testInventryitem(){
         Thread.sleep(2000);
     }
     @Test(priority = 17)
-    public void testCartadding() throws InterruptedException{
+    public void testAddCart() throws InterruptedException{
 
         WebElement additem2 =driver.findElement(By.xpath("//*[@id=\"inventory_container\"]/div/div[3]/div[3]/button"));
         additem2.click();

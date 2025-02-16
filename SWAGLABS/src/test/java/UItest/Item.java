@@ -1,3 +1,21 @@
+/*
+Project				: SWAGLABS
+Product				:
+Module				: standard_user
+Function			: Item detail function
+File				: inventory.html
+Date Started		: 13/02/2025
+Author				: Gayanee Thennakoon
+Date Modified		:
+Modified by			:
+
+Version				: 1.0.0.
+Remarks				:
+Assignment of Software Quality Assurance Professional Program
+
+*/
+
+
 package UItest;
 
 import org.openqa.selenium.By;
