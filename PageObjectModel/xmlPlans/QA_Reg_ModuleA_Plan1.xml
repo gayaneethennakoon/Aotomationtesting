@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="QA_Reg_ModuleA_Plan1">
+    <test  name="TC001_RegisterUserTestUpdated">
+        <classes>
+            <class name="testcases.TC001_RegisterUserTestUpdated"></class>
+        </classes>
+    </test>
+</suite>
